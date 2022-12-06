@@ -16,7 +16,10 @@ router.get('/', async (request, response) => {
 	const currentTime =  Date.parse(new Date()) / 1000
 	if (currentTime < info[1][3] || forceloadsplatfests){
 		avaliable = true
-		if (currentTime >= info[1][1]) {
+		if (forceloadsplatfests) {
+			Sstatus = "FORCE_LOADED"
+		}
+		else if (currentTime >= info[1][1]) {
 			Sstatus = "Live!"
 		}
 		else if (currentTime >= info[1][0]) {

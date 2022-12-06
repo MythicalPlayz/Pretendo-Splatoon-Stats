@@ -55,6 +55,9 @@ body {
     display: block;
     padding-bottom: 1in;
     background-color: var(--bg-shade-2-5);
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 20px;
 }
 
 .splatfest .art { 
@@ -95,6 +98,9 @@ body {
     padding-bottom: 20px;
     background-color: var(--bg-shade-2-5);
     padding-top: 20px;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 20px;
 }
 
 .cmaps .block {
