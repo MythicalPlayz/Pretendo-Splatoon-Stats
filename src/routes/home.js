@@ -20,7 +20,7 @@ router.get('/', async (request, response) => {
 			Sstatus = "Live!"
 		}
 		else if (currentTime >= info[1][0]) {
-			Sstatus = "Happening Soon!"
+			Sstatus = "Inkoming!"
 		}
 		else {
 			avaliable = false
