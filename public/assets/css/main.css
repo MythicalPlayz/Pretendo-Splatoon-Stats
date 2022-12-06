@@ -105,5 +105,6 @@ body {
     }
     .sub-title {
         text-align: center;
+        padding-left: 0px;
     }
 }
