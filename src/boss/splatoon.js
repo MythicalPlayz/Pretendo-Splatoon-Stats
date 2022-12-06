@@ -2,6 +2,7 @@ module.exports = {
     getSplatfestMapRoation,
     getSplatfestTime,
     getSplatfestTeam,
+    getSplatfestMode,
 }
 
 function getSplatfestMapRoation(content){
@@ -10,7 +11,6 @@ function getSplatfestMapRoation(content){
     for (i = 0; i < 3;i++) {
         StageNames.push(mapidToMapName(Stages[i].value.MapID.value))
     }
-    
     return StageNames
 }
 
@@ -103,4 +103,8 @@ function gachiToRankedName(gachiRule){
         default:
             return "Unknown Mode"
     }
+}
+
+function getSplatfestMode(content){
+    return gachiToRankedName(content.value.Rule.value)
 }

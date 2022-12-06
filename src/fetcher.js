@@ -23,7 +23,7 @@ async function GetSplatfestData(){
    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
    mainfilearray = new byaml(mainfobymal.content).root
    //TODO Get the Splatfest Cover
-   return [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray)]
+   return [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
 }
 
 function GetMapRotation(){

@@ -13,7 +13,8 @@ router.get('/', async (request, response) => {
     const splatfest = {
 		theme: `${info[0][0]} vs ${info[0][1]}`,
 		timeOfFest: `${timestartformat} - ${timeendformat}`,
-		stages: info[2]
+		stages: info[2],
+		gamemode: info[3]
 	}
     
 	const data = {splatfest}
