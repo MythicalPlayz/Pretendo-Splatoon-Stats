@@ -22,6 +22,9 @@ router.get('/', async (request, response) => {
 		else if (currentTime >= info[1][0]) {
 			Sstatus = "Happening Soon!"
 		}
+		else {
+			avaliable = false
+		}
 	}
 
     const splatfest = {
