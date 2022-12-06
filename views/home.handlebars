@@ -3,7 +3,8 @@
 	<div class="title">
 		<b>Splatoon Server Status</b>
 	</div>
-	<div class="sub-title">Splatfest</div>
+	{{#if splatfest.avaliable}}
+	<div class="sub-title">Splatfest: {{splatfest.Sstatus}}</div>
 	<div class="splatfest">
 		<img class="art" src="/assets/images/splatfest.jpg"></img>
 		<div class="splatfest-content">
@@ -12,6 +13,7 @@
 			<div class="stages"><b>Maps:</b><br>{{splatfest.stages.[0]}}<br>{{splatfest.stages.[1]}}<br>{{splatfest.stages.[2]}}<br>Mode: {{splatfest.gamemode}}</div>
 		</div>
 	</div>
+	{{/if}}
 	<div class="cmaps">
 		Current Maps
 	</div>
