@@ -1,0 +1,20 @@
+{{> header}}
+<div class="container">
+	<div class="title">
+		<b>Splatoon Server Status</b>
+	</div>
+	<div class="splatfest">
+		<img class="art" src="https://cdn.wikimg.net/en/splatoonwiki/images/4/42/Splatfest_Callie_vs_Marie.jpg"></img>
+		<div class="splatfest-content">
+			<div class="theme"><b>{{splatfest.theme}}</b></div>
+			<div class="timestamp">{{splatfest.timeOfFest}}</div>
+			<div class="stages"><b>Maps:</b><br>{{splatfest.stages.[0]}}<br>{{splatfest.stages.[1]}}<br>{{splatfest.stages.[2]}}</div>
+		</div>
+	</div>
+	<div class="cmaps">
+		Current Maps
+	</div>
+	<div class="nmaps">
+		Next Maps
+	</div>
+</div>

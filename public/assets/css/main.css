@@ -1,0 +1,77 @@
+:root {
+	/* 1 is the base color, <1 are darker variations and >1 are lighter */
+
+	--bg-shade-0: #131733;
+	--bg-shade-1: #1B1F3B;
+	--bg-shade-2: #23274A;
+	--bg-shade-2-5: #2D3258;
+	--bg-shade-3: #373C65;
+	--bg-shade-3-5: #404673;
+	--bg-shade-4: #494F81;
+
+	--accent-shade-0: #673DB6;
+	--accent-shade-1: #9D6FF3;
+	--accent-shade-2: #A185D6;
+	--accent-shade-3: #CAB1FB;
+
+	--text-shade-0: #8990C1;
+	--text-shade-1: #A1A8D9;
+	--text-shade-2: #CAC1F5;
+	--text-shade-3: #fff;
+
+	--green-shade-0: #37a985;
+	--green-shade-1: #59c9a5;
+
+	--red-shade-1: #a9375b;
+
+	--border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--bg-shade-0);
+}
+
+.main-body {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    color: var(--text-shade-0);
+}
+
+.title {
+    font-size: 4rem;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.splatfest {
+    size: 0px;
+    display: block;
+    padding-bottom: 1in;
+    background-color: var(--bg-shade-2-5);
+}
+
+.splatfest .art {
+    padding-left: 50%;
+    padding-top: 20px;
+    width: 40%;
+    position: static;
+}
+
+.splatfest .splatfest-content {
+    margin-top: -300px;
+    padding-left: 10%;
+}
+
+.splatfest .splatfest-content .theme {
+    font-size: 4rem;
+    padding-bottom: 20px;
+}
+
+.splatfest .splatfest-content .timestamp {
+    font-size: 2rem;
+    padding-bottom: 20px;
+}
+
+.splatfest .splatfest-content .stages {
+    font-size: 1.25rem;
+}
