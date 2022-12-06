@@ -3,11 +3,12 @@ module.exports = {
     getSplatfestTime,
     getSplatfestTeam,
     getSplatfestMode,
+    getCurrentRotation,
 }
 
 function getSplatfestMapRoation(content){
-    Stages = content.value.Stages.value
-    StageNames = []
+    const Stages = content.value.Stages.value
+    let StageNames = []
     for (i = 0; i < 3;i++) {
         StageNames.push(mapidToMapName(Stages[i].value.MapID.value))
     }
@@ -15,23 +16,23 @@ function getSplatfestMapRoation(content){
 }
 
 function getSplatfestTime(content){
-    STime = content.value.Time.value
-    UnixTime = []
-    Types = ["Announce","End","Result","Start"]
+    const STime = content.value.Time.value
+    let UnixTime = []
+    const Types = ["Announce","End","Result","Start"]
     for (i = 0; i < 4;i++) {
         UnixTime.push(getUnixTime(STime[Types[i]].value))
     }
     return UnixTime
 }
 function getSplatfestTeam(content){
-    Teams = content.value.Teams.value
-    TeamAlpha = Teams[0].value.ShortName.value.USen.value
-    TeamBravo = Teams[1].value.ShortName.value.USen.value
+    const Teams = content.value.Teams.value
+    const TeamAlpha = Teams[0].value.ShortName.value.USen.value
+    const TeamBravo = Teams[1].value.ShortName.value.USen.value
     return [TeamAlpha,TeamBravo]
 }
 
 function mapidToMapName(ID){
-    MapName = ""
+    let MapName = ""
     switch (ID){
         case 0:
             MapName = "Urchin Underpass"
@@ -107,4 +108,73 @@ function gachiToRankedName(gachiRule){
 
 function getSplatfestMode(content){
     return gachiToRankedName(content.value.Rule.value)
+}
+
+function getDateOfFirstRotaion(content){
+    return Date.parse(content.value.DateTime.value) / 1000
+}
+
+function getRotations(content){
+    return content.value.Phases.value
+}
+
+function CalculateWhichRotation(filedate){
+    const currentTime =  Date.parse(new Date()) / 1000
+    let differnce = currentTime - filedate
+
+    if (differnce < 0){
+        differnce = Math.abs(differnce) //TODO Make a better handler
+    }
+    const maxRotation = 4 * 180 * 3600
+    let rotationNumber = 0
+    if (differnce >= maxRotation){
+        rotationNumber = 179
+        return rotationNumber
+    }
+    let count = 0
+    while(count <= differnce && 3600 * 4 <= differnce){ //TODO Better System than this
+        count += 3600 * 4
+        rotationNumber++
+    }
+    return rotationNumber
+}
+
+function getCurrentRotation(content){
+  const number = CalculateWhichRotation(getDateOfFirstRotaion(content))
+  let Rotations = getRotationInfoAtIndex(content,number)
+  let ReturnedRotation = []
+  ReturnedRotation.push(Rotations)
+  if (number < 179){
+    ReturnedRotation.push(getRotationInfoAtIndex(number + 1))
+  }
+  return ReturnedRotation
+}
+
+function getRotationInfoAtIndex(content,index){
+    const Rotations = getRotations(content)
+    const RequiredRotation = Rotations[index].value
+
+    let ReturnedRotation = []
+    let NormalMaps = []
+    NormalMaps.push(mapidToMapName(RequiredRotation.RegularStages.value[0].value.MapID.value))
+    NormalMaps.push(mapidToMapName(RequiredRotation.RegularStages.value[1].value.MapID.value))
+    ReturnedRotation.push(NormalMaps)
+    let NormalMapsID = []
+    NormalMapsID.push(RequiredRotation.RegularStages.value[0].value.MapID.value)
+    NormalMapsID.push(RequiredRotation.RegularStages.value[1].value.MapID.value)
+    ReturnedRotation.push(NormalMapsID)
+
+
+    let RankedMode = gachiToRankedName(RequiredRotation.GachiRule.value)
+    ReturnedRotation.push(RankedMode)
+    let RankedMaps = []
+    RankedMaps.push(mapidToMapName(RequiredRotation.GachiStages.value[0].value.MapID.value))
+    RankedMaps.push(mapidToMapName(RequiredRotation.GachiStages.value[1].value.MapID.value))
+    ReturnedRotation.push(RankedMaps)
+    let RankedMapsID = []
+    RankedMapsID.push(RequiredRotation.GachiStages.value[0].value.MapID.value)
+    RankedMapsID.push(RequiredRotation.GachiStages.value[1].value.MapID.value)
+    ReturnedRotation.push(RankedMapsID)
+
+    return ReturnedRotation
 }

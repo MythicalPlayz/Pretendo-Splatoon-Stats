@@ -14,8 +14,28 @@
 		</div>
 	</div>
 	{{/if}}
+	<div class="sub-title">Current Maps</div>
 	<div class="cmaps">
-		Current Maps
+		<div class="block">
+			<div class="rule">Mode: Turf War</div>
+			<img class="stage-image" src="/assets/images/maps/{{currentrotation.normalIDs.[0]}}.png"></img>
+			{{currentrotation.normalStages.[0]}}
+		</div>
+		<div class="block">
+			<div class="rule">Mode: Turf War</div>
+			<img class="stage-image" src="/assets/images/maps/{{currentrotation.normalIDs.[1]}}.png"></img>
+			{{currentrotation.normalStages.[1]}}
+		</div>
+		<div class="block">
+			<div class="rule">Mode: {{currentrotation.rankedmode}}</div>
+			<img class="stage-image" src="/assets/images/maps/{{currentrotation.rankedIDs.[0]}}.png"></img>
+			{{currentrotation.rankedStages.[0]}}
+		</div>
+		<div class="block">
+			<div class="rule">Mode: {{currentrotation.rankedmode}}</div>
+			<img class="stage-image" src="/assets/images/maps/{{currentrotation.rankedIDs.[1]}}.png"></img>
+			{{currentrotation.rankedStages.[0]}}
+		</div>
 	</div>
 	<div class="nmaps">
 		Next Maps

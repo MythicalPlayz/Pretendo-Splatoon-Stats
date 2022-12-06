@@ -26,8 +26,12 @@ async function GetSplatfestData(){
    return [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
 }
 
-function GetMapRotation(){
-    
+async function GetMapRotations(){
+    file = await httpGetAsync("https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/schdat2?c=CA&l=en",true)
+    maininfofile = await httpGetAsync(file)
+    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
+    mainfilearray = new byaml(mainfobymal.content).root
+    return spoon.getCurrentRotation(mainfilearray)
 }
 
 function GrabFileUrlFromXML(content){
@@ -55,5 +59,6 @@ function GrabFileUrlFromXML(content){
 }
 
 module.exports = {
-    GetSplatfestData
+    GetSplatfestData,
+    GetMapRotations
 }

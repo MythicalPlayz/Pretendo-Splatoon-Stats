@@ -1,4 +1,5 @@
 {
     "BOSS_AES_KEY": "DUMP YOUR KEYS",
-    "BOSS_HMAC_KEY": "FROM YOUR CONSOLE"
+    "BOSS_HMAC_KEY": "FROM YOUR CONSOLE",
+    "forceloadsplatfests": "true"
 }
