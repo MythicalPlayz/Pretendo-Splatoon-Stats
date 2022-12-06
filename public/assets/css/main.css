@@ -101,6 +101,9 @@ body {
     .splatfest .splatfest-content {
         margin-top: 0px;
         width: 90%;
+        text-align: center;
     }
-
+    .sub-title {
+        text-align: center;
+    }
 }
