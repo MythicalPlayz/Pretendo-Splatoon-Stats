@@ -4,13 +4,16 @@ const fetcher = require("../fetcher")
 const {forceloadsplatfests,usenintendo} = require('../../config.json');
 
 router.get('/', async (request, response) => {
+	//Checks the config to see if to use Nintendo or Pretendo
 	fetcher.UseNintendoRotation(usenintendo.toLowerCase() === "true")
 
+	//Gets Locale of user
 	firstlocale = "en-GB"
 	try {
 		firstlocale = request.acceptsLanguages()[0]
 	} catch (c) {}
 
+	//Get Splatfest info
 	const splatfestinfoarray = await fetcher.GetSplatfestData()
 	if (splatfestinfoarray === null) { response.send('Could not get Splatfest Info'); return}
 	const timestart = new Date(splatfestinfoarray[1][3] * 1000)
@@ -46,6 +49,7 @@ router.get('/', async (request, response) => {
 		Sstatus: Sstatus
 	}
     
+	//Get current Rotation as well as the next one if available
 	const rotationsarray = await fetcher.GetMapRotations()
 	if (rotationsarray === null) { response.send('Could not get Stage Rotation'); return}
 	const currentrotationarray = rotationsarray[0]
