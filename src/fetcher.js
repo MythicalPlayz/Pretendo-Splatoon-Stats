@@ -3,6 +3,7 @@ const spoon = require('./boss/splatoon')
 const byaml = require('./boss/byaml')
 const boss = require('boss-js')
 const { BOSS_AES_KEY, BOSS_HMAC_KEY } = require('../config.json');
+const logger = require('./logger');
 
 splatfestcache = []
 rotationcache = []
@@ -26,11 +27,16 @@ async function httpGetAsync(theUrl,parase)
 
 async function GetSplatfestData(){
    if (ShouldRefresh()) {
+    try {
    files = await httpGetAsync(optdat2,true)
    maininfofile = await httpGetAsync(files[0])
    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
    mainfilearray = new byaml(mainfobymal.content).root
    splatfestcache = [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
+    } catch (c) {
+        logger.warn(c)
+        return null
+    }
    }
    //TODO Get the Splatfest Cover
    return splatfestcache
@@ -38,12 +44,17 @@ async function GetSplatfestData(){
 
 async function GetMapRotations(){
     if (ShouldRefresh()) {
+     try {
     file = await httpGetAsync(schdat2,true)
     maininfofile = await httpGetAsync(file)
     mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
     mainfilearray = new byaml(mainfobymal.content).root
     rotationcache = spoon.getCurrentRotation(mainfilearray)
     SetTimeCache()
+     } catch (c) {
+        logger.warn(c)
+        return null
+     }
     }
     return rotationcache
 }
@@ -72,11 +83,6 @@ function GrabFileUrlFromXML(content){
     
 }
 
-module.exports = {
-    GetSplatfestData,
-    GetMapRotations,
-    UseNintendoRotation
-}
 function UseNintendoRotation(status){
     if (status){
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -100,4 +106,10 @@ function SetTimeCache() {
     const UTCArray = UTCDate.split(" ")
     const UTC = [UTCArray[1],UTCArray[2],UTCArray[3],UTCArray[4].split(":")[0]]
     timecache = UTC
+}
+
+module.exports = {
+    GetSplatfestData,
+    GetMapRotations,
+    UseNintendoRotation
 }
