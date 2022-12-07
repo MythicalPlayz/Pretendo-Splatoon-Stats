@@ -194,9 +194,11 @@ body {
 }
 
 .normal-text {
-    background-color: #0a831a;
+    background-color: rgba(10, 131, 26, 0.7);
+    height: fit-content;
 }
 
 .ranked-text {
-    background-color: #9d5c01;
+    background-color: rgba(157, 92, 1, 0.7);
+    height: fit-content;
 }
