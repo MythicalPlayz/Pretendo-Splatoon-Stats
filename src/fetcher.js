@@ -8,9 +8,11 @@ splatfestcache = []
 rotationcache = []
 timecache = []
 
+optdat2 = "https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/optdat2?c=CA&l=en"
+schdat2 = "https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/schdat2?c=CA&l=en"
+
 async function httpGetAsync(theUrl,parase)
 {
-    
     const response = await fetch(theUrl);
     if (response.status === 200){
         if (parase){
@@ -24,7 +26,7 @@ async function httpGetAsync(theUrl,parase)
 
 async function GetSplatfestData(){
    if (splatfestcache.length === 0) {
-   files = await httpGetAsync("https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/optdat2?c=CA&l=en",true)
+   files = await httpGetAsync(optdat2,true)
    maininfofile = await httpGetAsync(files[0])
    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
    mainfilearray = new byaml(mainfobymal.content).root
@@ -36,7 +38,7 @@ async function GetSplatfestData(){
 
 async function GetMapRotations(){
     if (rotationcache.length === 0) {
-    file = await httpGetAsync("https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/schdat2?c=CA&l=en",true)
+    file = await httpGetAsync(schdat2,true)
     maininfofile = await httpGetAsync(file)
     mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
     mainfilearray = new byaml(mainfobymal.content).root
@@ -71,5 +73,13 @@ function GrabFileUrlFromXML(content){
 
 module.exports = {
     GetSplatfestData,
-    GetMapRotations
+    GetMapRotations,
+    UseNintendoRotation
+}
+function UseNintendoRotation(status){
+    if (status){
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+optdat2 = optdat2.replace("pretendo.cc","nintendo.net")
+schdat2 = schdat2.replace("pretendo.cc","nintendo.net")
+    }
 }

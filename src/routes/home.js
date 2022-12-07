@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const router = new Router();
 const fetcher = require("../fetcher")
-const {forceloadsplatfests} = require('../../config.json');
+const {forceloadsplatfests,usenintendo} = require('../../config.json');
 
 router.get('/', async (request, response) => {
+	fetcher.UseNintendoRotation(usenintendo.toLowerCase() === "true")
 	const firstlocale = request.acceptsLanguages()[0]
 	const info = await fetcher.GetSplatfestData()
 	const timestart = new Date(info[1][1] * 1000)
@@ -14,9 +15,9 @@ router.get('/', async (request, response) => {
 	avaliable = false
 	Sstatus = ""
 	const currentTime =  Date.parse(new Date()) / 1000
-	if (currentTime < info[1][3] || forceloadsplatfests){
+	if (currentTime < info[1][3] || forceloadsplatfests.toLowerCase() === "true"){
 		avaliable = true
-		if (forceloadsplatfests) {
+		if (forceloadsplatfests.toLowerCase() === "true") {
 			Sstatus = "FORCE_LOADED"
 		}
 		else if (currentTime >= info[1][1]) {

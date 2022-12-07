@@ -16,49 +16,49 @@
 	{{/if}}
 	<div class="sub-title">Current Rotation</div>
 	<div class="maps">
-		<div class="block">
-			<div class="rule">Mode: Turf War</div>
+		<div class="block colored normal">
+			<div class="normal-text rule">Mode: Turf War</div>
 			<img class="stage-image" src="/assets/images/maps/{{currentrotation.normalIDs.[0]}}.png"></img>
-			{{currentrotation.normalStages.[0]}}
+			<div class="normal-text">{{currentrotation.normalStages.[0]}}</div>
 		</div>
-		<div class="block">
-			<div class="rule">Mode: Turf War</div>
+		<div class="block colored normal">
+			<div class="normal-text rule">Mode: Turf War</div>
 			<img class="stage-image" src="/assets/images/maps/{{currentrotation.normalIDs.[1]}}.png"></img>
-			{{currentrotation.normalStages.[1]}}
+			<div class="normal-text">{{currentrotation.normalStages.[1]}}</div>
 		</div>
-		<div class="block">
-			<div class="rule">Mode: {{currentrotation.rankedmode}}</div>
+		<div class="block colored ranked">
+			<div class="ranked-text rule">Mode: {{currentrotation.rankedmode}}</div>
 			<img class="stage-image" src="/assets/images/maps/{{currentrotation.rankedIDs.[0]}}.png"></img>
-			{{currentrotation.rankedStages.[0]}}
+			<div class="ranked-text">{{currentrotation.rankedStages.[0]}}</div>
 		</div>
-		<div class="block">
-			<div class="rule">Mode: {{currentrotation.rankedmode}}</div>
+		<div class="block colored ranked">
+			<div class="ranked-text rule">Mode: {{currentrotation.rankedmode}}</div>
 			<img class="stage-image" src="/assets/images/maps/{{currentrotation.rankedIDs.[1]}}.png"></img>
-			{{currentrotation.rankedStages.[0]}}
+			<div class="ranked-text">{{currentrotation.rankedStages.[1]}}</div>
 		</div>
 	</div>
 	<div class="sub-title">Next Rotation</div>
 	{{#if nextrotation.avaliable}}
 	<div class="maps">
-		<div class="block">
-			<div class="rule">Mode: Turf War</div>
+		<div class="block colored normal">
+			<div class="normal-text rule">Mode: Turf War</div>
 			<img class="stage-image" src="/assets/images/maps/{{nextrotation.normalIDs.[0]}}.png"></img>
-			{{nextrotation.normalStages.[0]}}
+			<div class="normal-text">{{nextrotation.normalStages.[0]}}</div>
 		</div>
-		<div class="block">
-			<div class="rule">Mode: Turf War</div>
+		<div class="block colored normal">
+			<div class="normal-text rule">Mode: Turf War</div>
 			<img class="stage-image" src="/assets/images/maps/{{nextrotation.normalIDs.[1]}}.png"></img>
-			{{nextrotation.normalStages.[1]}}
+			<div class="normal-text">{{nextrotation.normalStages.[1]}}</div>
 		</div>
-		<div class="block">
-			<div class="rule">Mode: {{nextrotation.rankedmode}}</div>
+		<div class="block colored ranked">
+			<div class="ranked-text rule">Mode: {{nextrotation.rankedmode}}</div>
 			<img class="stage-image" src="/assets/images/maps/{{nextrotation.rankedIDs.[0]}}.png"></img>
-			{{nextrotation.rankedStages.[0]}}
+			<div class="ranked-text">{{nextrotation.rankedStages.[0]}}</div>
 		</div>
-		<div class="block">
-			<div class="rule">Mode: {{nextrotation.rankedmode}}</div>
+		<div class="block colored ranked">
+			<div class="ranked-text rule">Mode: {{nextrotation.rankedmode}}</div>
 			<img class="stage-image" src="/assets/images/maps/{{nextrotation.rankedIDs.[1]}}.png"></img>
-			{{nextrotation.rankedStages.[0]}}
+			<div class="ranked-text">{{nextrotation.rankedStages.[1]}}</div>
 		</div>
 	</div>
 	{{/if}}

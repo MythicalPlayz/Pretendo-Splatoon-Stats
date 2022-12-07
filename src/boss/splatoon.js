@@ -101,6 +101,8 @@ function gachiToRankedName(gachiRule){
             return "Tower Control"
         case "cVgl":
             return "Rainmaker"
+        case "cPnt":
+            return "Turf War"
         default:
             return "Unknown Mode"
     }
@@ -132,7 +134,7 @@ function CalculateWhichRotation(filedate){
         return rotationNumber
     }
     let count = 0
-    while(count <= differnce && 3600 * 4 <= differnce){ //TODO Better System than this
+    while(count <= (differnce - 3600 * 4) && 3600 * 4 <= differnce){ //TODO Better System than this
         count += 3600 * 4
         rotationNumber++
     }
@@ -145,7 +147,7 @@ function getCurrentRotation(content){
   let ReturnedRotation = []
   ReturnedRotation.push(Rotations)
   if (number < 179){
-    ReturnedRotation.push(getRotationInfoAtIndex(number + 1))
+    ReturnedRotation.push(getRotationInfoAtIndex(content,number + 1))
   }
   return ReturnedRotation
 }
