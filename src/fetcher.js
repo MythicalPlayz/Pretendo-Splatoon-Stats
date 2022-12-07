@@ -3,6 +3,11 @@ const spoon = require('./boss/splatoon')
 const byaml = require('./boss/byaml')
 const boss = require('boss-js')
 const { BOSS_AES_KEY, BOSS_HMAC_KEY } = require('../config.json');
+
+splatfestcache = []
+rotationcache = []
+timecache = []
+
 async function httpGetAsync(theUrl,parase)
 {
     
@@ -18,20 +23,26 @@ async function httpGetAsync(theUrl,parase)
 }
 
 async function GetSplatfestData(){
+   if (splatfestcache.length === 0) {
    files = await httpGetAsync("https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/optdat2?c=CA&l=en",true)
    maininfofile = await httpGetAsync(files[0])
    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
    mainfilearray = new byaml(mainfobymal.content).root
+   splatfestcache = [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
+   }
    //TODO Get the Splatfest Cover
-   return [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
+   return splatfestcache
 }
 
 async function GetMapRotations(){
+    if (rotationcache.length === 0) {
     file = await httpGetAsync("https://npts.app.pretendo.cc/p01/tasksheet/1/rjVlM7hUXPxmYQJh/schdat2?c=CA&l=en",true)
     maininfofile = await httpGetAsync(file)
     mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
     mainfilearray = new byaml(mainfobymal.content).root
-    return spoon.getCurrentRotation(mainfilearray)
+    rotationcache = spoon.getCurrentRotation(mainfilearray)
+    }
+    return rotationcache
 }
 
 function GrabFileUrlFromXML(content){
