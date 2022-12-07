@@ -92,7 +92,7 @@ body {
     margin-bottom: -3rem;
 }
 
-.cmaps {
+.maps {
     size: 0px;
     display: flex;
     padding-bottom: 20px;
@@ -103,7 +103,7 @@ body {
     border-radius: 20px;
 }
 
-.cmaps .block {
+.maps .block {
     width: 20%;
     background-color: var(--bg-shade-3-5);
     padding: 20px;
@@ -115,14 +115,19 @@ body {
     font-size: 1.5rem;
 }
 
-.cmaps .stage-image {
+.maps .stage-image {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.cmaps .rule {
+.maps .rule {
     margin-top: 5px;
+}
+
+.no-rotation {
+    text-align: center;
+    font-size: 2rem;
 }
 
 @media (max-width: 1200px) {

@@ -49,10 +49,20 @@ router.get('/', async (request, response) => {
 		rankedStages: currentrotationarray[3],
 		rankedIDs: currentrotationarray[4]
 	}
+	nextrotation = {avaliable: false}
+	if (hasNext) {
+		const nextrotationarray = rotationsarray[1]
+		nextrotation = {
+			normalStages: nextrotationarray[0],
+			normalIDs: nextrotationarray[1],
+			rankedmode: nextrotationarray[2],
+			rankedStages: nextrotationarray[3],
+			rankedIDs: nextrotationarray[4],
+			avaliable: true
+		}
+	}
 
-	nextrotation = {}
-
-	const data = {splatfest,currentrotation}
+	const data = {splatfest,currentrotation,nextrotation}
     response.render('home',data);
 });
 
