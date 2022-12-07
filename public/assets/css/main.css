@@ -89,7 +89,13 @@ body {
 
 .splatfest .splatfest-content .stages {
     font-size: 1.25rem;
-    margin-bottom: -3rem;
+    width: 200%;
+    padding-top: 3rem;
+}
+
+.splatfest .splatfest-content .splatfestrankedmode {
+    font-size: 1.25rem;
+    margin-bottom: 3.5rem;
 }
 
 .maps {
@@ -136,6 +142,9 @@ body {
     .splatfest .splatfest-content {
         width: 40%;
     }
+    .splatfest .splatfest-content .stages {
+        width: 225%;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -150,6 +159,10 @@ body {
         text-align: center;
     }
     .splatfest .splatfest-content .stages {
+        font-size: 2rem;
+        width: 100%;
+    }
+    .splatfest .splatfest-content .splatfestrankedmode {
         font-size: 2rem;
     }
     .sub-title {
@@ -168,6 +181,10 @@ body {
         width: 90%;
     }
 } I need to Fix theis */
+
+.threemaps {
+    width: 20%;
+}
 
 .normal {
     background: repeating-linear-gradient(
@@ -189,6 +206,16 @@ body {
       );
 }
 
+.splatfestmode {
+    background: repeating-linear-gradient(
+        45deg,
+        var(--accent-shade-0),
+        var(--accent-shade-0) 30px,
+        var(--accent-shade-1) 30px,
+        var(--accent-shade-1) 60px
+      );
+}
+
 .colored {
     color: white !important;
 }
@@ -201,4 +228,10 @@ body {
 .ranked-text {
     background-color: rgba(157, 92, 1, 0.7);
     height: fit-content;
+}
+
+.splatfest-text {
+    background-color: var(--accent-shade-0);
+    height: fit-content;
+    
 }

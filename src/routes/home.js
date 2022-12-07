@@ -41,7 +41,8 @@ router.get('/', async (request, response) => {
 		theme: `${splatfestinfoarray[0][0]} vs ${splatfestinfoarray[0][1]}`,
 		timeOfFest: `${timestartformat} - ${timeendformat}`,
 		stages: splatfestinfoarray[2],
-		gamemode: splatfestinfoarray[3],
+		stagesID: splatfestinfoarray[3],
+		gamemode: splatfestinfoarray[4],
 		avaliable: avaliable,
 		Sstatus: Sstatus
 	}

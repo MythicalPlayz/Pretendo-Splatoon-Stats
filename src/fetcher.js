@@ -32,7 +32,7 @@ async function GetSplatfestData(){
    maininfofile = await httpGetAsync(files[0])
    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
    mainfilearray = new byaml(mainfobymal.content).root
-   splatfestcache = [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRoation(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
+   splatfestcache = [spoon.getSplatfestTeam(mainfilearray),spoon.getSplatfestTime(mainfilearray),spoon.getSplatfestMapRotation(mainfilearray),spoon.getSplatfestsMapIDs(mainfilearray),spoon.getSplatfestMode(mainfilearray)]
     } catch (c) {
         logger.warn(c)
         return null

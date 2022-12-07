@@ -1,13 +1,27 @@
 module.exports = {
-    getSplatfestMapRoation,
+    getSplatfestMapRotation,
+    getSplatfestsMapIDs,
     getSplatfestTime,
     getSplatfestTeam,
     getSplatfestMode,
     getCurrentRotation,
 }
 
-function getSplatfestMapRoation(content){
+function getSplatfestsMapIDs(content,justtable){
     const Stages = content.value.Stages.value
+    if (justtable){
+    return Stages
+    }
+
+    let stagesIDs = []
+    for (i = 0; i < 3;i++) {
+        stagesIDs.push(Stages[i].value.MapID.value)
+    }
+    return stagesIDs
+}
+
+function getSplatfestMapRotation(content){
+    const Stages = getSplatfestsMapIDs(content,true)
     let StageNames = []
     for (i = 0; i < 3;i++) {
         StageNames.push(mapidToMapName(Stages[i].value.MapID.value))

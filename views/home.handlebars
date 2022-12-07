@@ -10,7 +10,23 @@
 		<div class="splatfest-content">
 			<div class="theme"><b>{{splatfest.theme}}</b></div>
 			<div class="timestamp">{{splatfest.timeOfFest}}</div>
-			<div class="stages"><b>Maps:</b><br>{{splatfest.stages.[0]}}<br>{{splatfest.stages.[1]}}<br>{{splatfest.stages.[2]}}<br><br><b>Mode:</b> {{splatfest.gamemode}}</div>
+			<div class="splatfestrankedmode"><b>Mode:</b>{{splatfest.gamemode}}</div>
+			<div class="stages"><b>Maps:</b>
+			<div class="maps">
+				<div class="block colored splatfestmode threemaps">
+					<img class="stage-image" src="/assets/images/maps/{{splatfest.stagesID.[0]}}.jpg"></img>
+					<div class="splatfest-text">{{splatfest.stages.[0]}}</div>
+				</div>
+				<div class="block colored splatfestmode threemaps">
+					<img class="stage-image" src="/assets/images/maps/{{splatfest.stagesID.[1]}}.jpg"></img>
+					<div class="splatfest-text">{{splatfest.stages.[1]}}</div>
+				</div>
+				<div class="block colored splatfestmode threemaps">
+					<img class="stage-image" src="/assets/images/maps/{{splatfest.stagesID.[2]}}.jpg"></img>
+					<div class="splatfest-text">{{splatfest.stages.[2]}}</div>
+				</div>
+			</div>
+			</div>
 		</div>
 	</div>
 	{{/if}}
