@@ -173,9 +173,9 @@ body {
     background: repeating-linear-gradient(
         45deg,
         #31e849,
-        #31e849 10px,
-        #0a831a 10px,
-        #0a831a 20px
+        #31e849 30px,
+        #0a831a 30px,
+        #0a831a 60px
       );
 }
 
@@ -183,9 +183,9 @@ body {
     background: repeating-linear-gradient(
         45deg,
         #ffa220,
-        #ffa220 10px,
-        #9d5c01 10px,
-        #9d5c01 20px
+        #ffa220 30px,
+        #9d5c01 30px,
+        #9d5c01 60px
       );
 }
 
