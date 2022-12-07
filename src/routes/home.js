@@ -8,10 +8,7 @@ router.get('/', async (request, response) => {
 	fetcher.UseNintendoRotation(usenintendo.toLowerCase() === "true")
 
 	//Gets Locale of user
-	firstlocale = "en-GB"
-	try {
-		firstlocale = request.acceptsLanguages()[0]
-	} catch (c) {}
+	const firstlocale =  (request.acceptsLanguages()[0] !== "*") ? request.acceptsLanguages()[0] : 'en-GB'
 
 	//Get Splatfest info
 	const splatfestinfoarray = await fetcher.GetSplatfestData()
