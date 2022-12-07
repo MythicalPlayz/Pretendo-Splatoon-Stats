@@ -5,7 +5,12 @@ const {forceloadsplatfests,usenintendo} = require('../../config.json');
 
 router.get('/', async (request, response) => {
 	fetcher.UseNintendoRotation(usenintendo.toLowerCase() === "true")
-	const firstlocale = request.acceptsLanguages()[0]
+
+	firstlocale = "en-GB"
+	try {
+		firstlocale = request.acceptsLanguages()[0]
+	} catch (c) {}
+
 	const splatfestinfoarray = await fetcher.GetSplatfestData()
 	if (splatfestinfoarray === null) { response.send('Could not get Splatfest Info'); return}
 	const timestart = new Date(splatfestinfoarray[1][3] * 1000)
