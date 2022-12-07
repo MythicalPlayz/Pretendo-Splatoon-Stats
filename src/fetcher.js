@@ -25,7 +25,7 @@ async function httpGetAsync(theUrl,parase)
 }
 
 async function GetSplatfestData(){
-   if (splatfestcache.length === 0) {
+   if (ShouldRefresh()) {
    files = await httpGetAsync(optdat2,true)
    maininfofile = await httpGetAsync(files[0])
    mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
@@ -37,12 +37,13 @@ async function GetSplatfestData(){
 }
 
 async function GetMapRotations(){
-    if (rotationcache.length === 0) {
+    if (ShouldRefresh()) {
     file = await httpGetAsync(schdat2,true)
     maininfofile = await httpGetAsync(file)
     mainfobymal = boss.decrypt(Buffer.from(maininfofile),BOSS_AES_KEY,BOSS_HMAC_KEY)
     mainfilearray = new byaml(mainfobymal.content).root
     rotationcache = spoon.getCurrentRotation(mainfilearray)
+    SetTimeCache()
     }
     return rotationcache
 }
@@ -82,4 +83,21 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 optdat2 = optdat2.replace("pretendo.cc","nintendo.net")
 schdat2 = schdat2.replace("pretendo.cc","nintendo.net")
     }
+}
+
+function ShouldRefresh() {
+    if (splatfestcache.length === 0 || rotationcache.length === 0 || timecache.length === 0) {
+        return true
+    }
+    const UTCDate = new Date().toUTCString()
+    const UTCArray = UTCDate.split(" ")
+    const UTC = [UTCArray[1],UTCArray[2],UTCArray[3],UTCArray[4].split(":")[0]]
+    return !UTC.every((val, index) => val === timecache[index])
+}
+
+function SetTimeCache() {
+    const UTCDate = new Date().toUTCString()
+    const UTCArray = UTCDate.split(" ")
+    const UTC = [UTCArray[1],UTCArray[2],UTCArray[3],UTCArray[4].split(":")[0]]
+    timecache = UTC
 }
