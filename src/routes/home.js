@@ -7,9 +7,9 @@ router.get('/', async (request, response) => {
 	fetcher.UseNintendoRotation(usenintendo.toLowerCase() === "true")
 	const firstlocale = request.acceptsLanguages()[0]
 	const info = await fetcher.GetSplatfestData()
-	const timestart = new Date(info[1][1] * 1000)
+	const timestart = new Date(info[1][3] * 1000)
 	const timestartformat = `${timestart.toLocaleDateString(firstlocale)} ${(timestart.getHours() >= 10) ? timestart.getHours() : "0" + timestart.getHours()}:${(timestart.getMinutes() >= 10) ? timestart.getMinutes() : "0" + timestart.getMinutes()}`
-	const timeend = new Date(info[1][3] * 1000)
+	const timeend = new Date(info[1][1] * 1000)
 	const timeendformat = `${timeend.toLocaleDateString(firstlocale)} ${(timeend.getHours() >= 10) ? timeend.getHours() : "0" + timeend.getHours()}:${(timeend.getMinutes() >= 10) ? timeend.getMinutes() : "0" + timeend.getMinutes()}`
 
 	avaliable = false
